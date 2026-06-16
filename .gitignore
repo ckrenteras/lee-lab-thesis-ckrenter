@@ -1,0 +1,7 @@
+# Datasets, publicly available upon request (see instructions in README)
+data/
+
+# dont need training logs or all per epoch data
+logs/
+results/manet/per-epoch/
+results/unet/per-epoch/
