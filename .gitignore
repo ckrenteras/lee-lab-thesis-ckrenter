@@ -5,3 +5,9 @@ data/
 logs/
 results/manet/per-epoch/
 results/unet/per-epoch/
+
+# model checkpoints
+*.safetensors
+*.pt
+*.pth
+*.ckpt
