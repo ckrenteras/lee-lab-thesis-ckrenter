@@ -12,7 +12,6 @@ def dice(preds, targets):
     """
     preds = preds.float()
     targets = targets.float()
-    print(preds.shape, targets.shape)  # add this
     intersection = (preds * targets).sum()
     return (2 * (intersection) / (preds.sum() + targets.sum() + 1e-12)).item()
 

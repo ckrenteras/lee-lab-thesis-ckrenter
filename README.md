@@ -20,3 +20,7 @@ after merge (same commands as before — the glob already picks up tagged files,
 and depth is recoverable from the `model` column, e.g. unet_depth5_s3_resnet18_d5_b8_lr0):
 head -1 results/hyperparam/unet/unet_hyperparam_0.csv > unet_hyperparam.csv
 tail -n +2 -q results/hyperparam/unet/unet_hyperparam_*.csv >> unet_hyperparam.csv
+
+
+RUN AUG EXPS:
+sbatch submit_aug_experiments.sh

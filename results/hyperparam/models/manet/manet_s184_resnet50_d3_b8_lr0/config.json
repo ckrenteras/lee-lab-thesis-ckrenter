@@ -1,0 +1,18 @@
+{
+  "_model_class": "MAnet",
+  "activation": null,
+  "aux_params": null,
+  "classes": 1,
+  "decoder_channels": [
+    256,
+    128,
+    64
+  ],
+  "decoder_interpolation": "nearest",
+  "decoder_pab_channels": 64,
+  "decoder_use_norm": "batchnorm",
+  "encoder_depth": 3,
+  "encoder_name": "resnet50",
+  "encoder_weights": "imagenet",
+  "in_channels": 1
+}

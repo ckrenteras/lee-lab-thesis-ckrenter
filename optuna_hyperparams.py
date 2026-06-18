@@ -12,10 +12,6 @@ import argparse
 import datasets
 import metrics
 
-OCTA3MM_TRAIN_SIZE = 140
-OCTA3MM_TEST_SIZE = 50
-OCTA3MM_VAL_SIZE = 10
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
 
@@ -23,6 +19,10 @@ print(f"Using device: {device}")
 # Define global datasets and paths here
 # These will not change throughout trials (same order, same batch size, etc.)
 # ======================================================================
+
+OCTA3MM_TRAIN_SIZE = 140
+OCTA3MM_TEST_SIZE = 50
+OCTA3MM_VAL_SIZE = 10
 
 TEST_SET = datasets.OCTA3MM_Dataset(split='test')
 TRAIN_VAL_SET = datasets.OCTA3MM_Dataset(split='train')
@@ -162,10 +162,10 @@ def make_objective(arch, hyperparam_grid, per_epoch_dir, summary_writer, summary
         seed = trial.number
         torch.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
-        depth      = trial.suggest_categorical('depth', hyperparam_grid['depth'])
-        encoder    = trial.suggest_categorical('encoder_name', hyperparam_grid['encoder_name'])
+        depth = trial.suggest_categorical('depth', hyperparam_grid['depth'])
+        encoder = trial.suggest_categorical('encoder_name', hyperparam_grid['encoder_name'])
         batch_size = trial.suggest_categorical('batch_size', hyperparam_grid['batch_size'])
-        lr         = trial.suggest_categorical('start_lr', hyperparam_grid['start_lr'])
+        lr = trial.suggest_categorical('start_lr', hyperparam_grid['start_lr'])
 
         model_dir, net_name = model_dir_for_trial(arch, tag, trial)
         os.makedirs(model_dir, exist_ok=True)
@@ -232,7 +232,7 @@ def make_objective(arch, hyperparam_grid, per_epoch_dir, summary_writer, summary
                         break
 
         # Load the best checkpoint and evaluate on the held-out test set
-        best_model   = smp.from_pretrained(model_dir).to(device)
+        best_model = smp.from_pretrained(model_dir).to(device)
         test_metrics = eval_epoch(best_model, TEST_LOADER, criterion)
 
         summary_row = {
